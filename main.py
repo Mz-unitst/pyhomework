@@ -9,7 +9,30 @@ import pandas as pd
 from pyecharts.charts import Timeline, Bar
 from pyecharts import options as opts
 from pyecharts.globals import ThemeType
+import requests
+from bs4 import BeautifulSoup
+import re
 
+url='https://data.stats.gov.cn/easyquery.htm?cn=E0103'
+header={}
+
+class spi():
+    def __init__(self):
+        self.url=url
+        self.header=header
+
+
+    def getHTMLText(self,url,header):
+        pass
+
+    def parseHTMLText(self,path,html):
+        pass
+
+    def saveHTMl(self,html):
+        pass
+
+    def run(self):
+        pass
 
 def time_bar():
     df1 = pd.read_csv(r"C:\Users\mzz\Desktop\gdp.csv", engine='python',encoding='gbk')
@@ -54,4 +77,5 @@ def time_bar():
 
 
 if __name__ == '__main__':
+    spi=spi()
     time_bar()
