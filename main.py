@@ -9,12 +9,22 @@ import pandas as pd
 from pyecharts.charts import Timeline, Bar
 from pyecharts import options as opts
 from pyecharts.globals import ThemeType
-
+import requests
+from bs4 import BeautifulSoup
+import re
+import crawl
 
 def time_bar():
-    df1 = pd.read_csv(r"C:\Users\mzz\Desktop\gdp.csv", engine='python',encoding='gbk')
+    df1 = pd.read_csv(
+        r"C:\Users\mzz\Desktop\gdp.csv",
+        engine='python',
+        encoding='gbk')
     # width="1450px",height="600px"
-    timeLine2 = Timeline(init_opts=opts.InitOpts(theme=ThemeType.LIGHT, width="1450px", height="600px"))
+    timeLine2 = Timeline(
+        init_opts=opts.InitOpts(
+            theme=ThemeType.LIGHT,
+            width="1450px",
+            height="600px"))
     # 一，经过数据处理的时间图
     # 思路：读取数据，因为数据是杂乱的，需要进行排序处理
     # 1，读取数据并出入字典 2，对字典中的数据按value排序可升序降序排序 3，取出排序好的数据进行画时间图
@@ -35,15 +45,20 @@ def time_bar():
             data.append(n)
         bar = (
             Bar()
-                .add_xaxis(list(region))
-                .add_yaxis("近20年各省生产总值(单位：亿元)", list(data))
-                .reversal_axis()
-                .set_series_opts(label_opts=opts.LabelOpts(position="right"))  # 系列配置项
-                .set_global_opts(
+            .add_xaxis(list(region))
+            .add_yaxis("近20年各省生产总值(单位：亿元)", list(data))
+            .reversal_axis()
+            # 系列配置项
+            .set_series_opts(label_opts=opts.LabelOpts(position="right"))
+            .set_global_opts(
                 # toolbox_opts=opts.ToolboxOpts(),
                 title_opts=opts.TitleOpts("{}年各省生产总值".format(i)),
-                xaxis_opts=opts.AxisOpts(axislabel_opts=opts.LabelOpts(rotate=0, font_size=12, interval=0)),
-                yaxis_opts=opts.AxisOpts(axislabel_opts=opts.LabelOpts(rotate=0, font_size=12, interval=0)),
+                xaxis_opts=opts.AxisOpts(
+                    axislabel_opts=opts.LabelOpts(
+                        rotate=0, font_size=12, interval=0)),
+                yaxis_opts=opts.AxisOpts(
+                    axislabel_opts=opts.LabelOpts(
+                        rotate=0, font_size=12, interval=0)),
 
             )
         )
@@ -54,4 +69,5 @@ def time_bar():
 
 
 if __name__ == '__main__':
-    time_bar()
+    spi = spi()
+    #time_bar()

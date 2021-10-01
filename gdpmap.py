@@ -1,14 +1,17 @@
 import pandas as pd
 from pyecharts import options as opts
 from pyecharts.charts import Map, Timeline
+from pyecharts import Geo
+import pandas as pd
+
 
 frame = pd.read_csv(r'C:\Users\mzz\Desktop\2.csv', encoding='GBK')
 tl = Timeline()
 map=Map()
-for i in range(2011, 2021):
+for i in range(2011, 2018):
     map0 = (
         Map()
-            .add("省份", frame[['地区', str(i) + '年']].values.tolist(), "china")
+            .add("省份", frame[['地区', str(str(i) + '年')]].values.tolist(), "china")
             .set_global_opts(
             title_opts=opts.TitleOpts(title="Map-{}年GDP（亿元）".format(i)),
             visualmap_opts=opts.VisualMapOpts(
@@ -22,3 +25,6 @@ for i in range(2011, 2021):
                 ]), ))
     tl.add(map0, "{}年".format(i))
 tl.render(r'C:\Users\mzz\Desktop\2010~2019年全国各地区GDP.html')
+
+map.add("省份",frame[['地区','2012年']].values.tolist(),"china")
+map.render(r'C:\Users\mzz\Desktop\test.html')
